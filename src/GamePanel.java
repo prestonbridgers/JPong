@@ -114,6 +114,16 @@ public class GamePanel extends JPanel {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
+		g.setColor(Color.WHITE);
+		g.fillRect(GAME_WIDTH / 2 - 3, 0, 6, GAME_HEIGHT);
+
+		g.setColor(Color.BLACK);
+		for(int i = 0; i < 14; i++)
+		{
+			g.fillRect(GAME_WIDTH / 2 - 3, i*50, 6, 25);
+		}
+
+
 		ball.draw(g);
 		paddle_right.draw(g);
 		paddle_left.draw(g);
@@ -134,6 +144,7 @@ public class GamePanel extends JPanel {
 			{
 				JFrame f = new JFrame(GamePanel.GAME_NAME);
 				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+				f.setResizable(false);
 				f.add(game);
 				f.pack();
 				f.setVisible(true);
