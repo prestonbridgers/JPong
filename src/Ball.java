@@ -9,7 +9,7 @@ The Ball class describes the ball that starts in the center of the screen and in
 
 public class Ball
 {
-	public static final int DIAMETER = 10;
+	public static final int DIAMETER = 20;
 	public static final int SPEED = 2;
 
 	private int xPos;

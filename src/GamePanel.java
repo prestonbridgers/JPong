@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.Dimension;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
 /**
 The GamePanel class represents the JPanel that holds the game itself. It should be added to a JFrame.
@@ -32,10 +34,49 @@ public class GamePanel extends JPanel {
 		setPreferredSize(dim);
 		setMaximumSize(dim);
 		setMinimumSize(dim);
+		setFocusable(true);
+		requestFocus();
 
 		paddle_left = new VerPaddle(Paddle.SPACING, (GAME_HEIGHT / 2) - (VerPaddle.HEIGHT / 2));
 		paddle_right = new VerPaddle(GAME_WIDTH - (Paddle.SPACING + VerPaddle.WIDTH), (GAME_HEIGHT / 2) - (VerPaddle.HEIGHT / 2));
 		ball = new Ball(GAME_WIDTH / 2, GAME_HEIGHT / 2, GAME_WIDTH, GAME_HEIGHT);
+
+		addKeyListener(new KeyListener()
+		{
+			@Override
+			public void keyPressed(KeyEvent e)
+			{
+				int keyCode = e.getKeyCode();
+				switch(keyCode)
+				{
+					case 87: //W
+					paddle_left.moveUp();
+					break;
+					case 83: //S
+					paddle_left.moveDown();
+					break;
+
+					case 38: //up_arrow
+					paddle_right.moveUp();
+					break;
+					case 40: //down_arrow
+					paddle_right.moveDown();
+					break;
+
+					case 65: //A
+					break;
+					case 68: //D
+					break;
+
+					case 37: //left_arrow
+					break;
+					case 39: //right_arrow
+					break;
+				}
+			}
+			public void keyReleased(KeyEvent e) {}
+			public void keyTyped(KeyEvent e) {}
+		});
 	}
 
 	/**
@@ -50,6 +91,7 @@ public class GamePanel extends JPanel {
 			ball.checkVerPaddleCollision(paddle_right);
 
 			ball.move();
+
 			repaint();
 
 			try

@@ -8,7 +8,7 @@ public abstract class Paddle
 {
 	public static final byte SPACING = 20;
 	public static final byte THICKNESS = 10;
-	public static final byte SPEED = 10;
+	public static final byte SPEED = 50;
 
 	private int xPos;
 	private int yPos;
