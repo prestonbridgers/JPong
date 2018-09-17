@@ -10,7 +10,7 @@ The Ball class describes the ball that starts in the center of the screen and in
 public class Ball
 {
 	public static final int DIAMETER = 20;
-	public static final int SPEED = 2;
+	public static final int SPEED = 1;
 
 	private int xPos;
 	private int yPos;
@@ -18,6 +18,8 @@ public class Ball
 	private int yVel = SPEED;
 	private int xBounds;
 	private int yBounds;
+
+	private int bounceCount = 5;
 
 	/**
 	The Ball constructor sets the initial x and y values of the ball.
@@ -53,6 +55,15 @@ public class Ball
 	}
 
 	/**
+	Accessor method for the bounceCount field;
+	@return bounceCount
+	*/
+	public int getBounceCount()
+	{
+		return bounceCount;
+	}
+
+	/**
 	Updates the position of the ball by adding the xVel to the xPos and yVel to the yPos.
 	*/
 	public void move()
@@ -69,6 +80,7 @@ public class Ball
 		if(xPos <= 0 || xPos + DIAMETER >= xBounds)
 		{
 			bounceX();
+			bounceCount++;
 		}
 
 		if(yPos <= 0 || yPos + DIAMETER >= yBounds)
@@ -107,6 +119,7 @@ public class Ball
 			if(yCenter >= p.getYPos() && yCenter <= p.getYPos() + HorPaddle.HEIGHT)
 			{
 				bounceY();
+				bounceCount--;
 			}
 		}
 	}
@@ -125,6 +138,7 @@ public class Ball
 			if(yCenter >= p.getYPos() && yCenter <= p.getYPos() + VerPaddle.HEIGHT)
 			{
 				bounceX();
+				bounceCount--;
 			}
 		}
 	}
@@ -136,6 +150,6 @@ public class Ball
 	public void draw(Graphics g)
 	{
 		g.setColor(Color.WHITE);
-		g.drawOval(xPos, yPos, DIAMETER, DIAMETER);
+		g.fillOval(xPos, yPos, DIAMETER, DIAMETER);
 	}
 }

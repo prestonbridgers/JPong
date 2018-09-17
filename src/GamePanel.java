@@ -96,7 +96,13 @@ public class GamePanel extends JPanel {
 
 			try
 			{
-				Thread.sleep(5);
+				if(ball.getBounceCount() < 1)
+				{
+					Thread.sleep(1);
+				} else
+				{
+					Thread.sleep(ball.getBounceCount());
+				}
 			} catch(InterruptedException e)
 			{
 				e.printStackTrace();
@@ -127,31 +133,6 @@ public class GamePanel extends JPanel {
 		ball.draw(g);
 		paddle_right.draw(g);
 		paddle_left.draw(g);
-	}
-
-	/**
-	The entry point for the program. It simply creates a JFrame and adds a GamePanel object to it.
-	@param args Boilerplate for the main(String[] args) method of the program.
-	*/
-	public static void main(String[] args)
-	{
-		GamePanel game = new GamePanel();
-
-		javax.swing.SwingUtilities.invokeLater(new Runnable()
-		{
-			@Override
-			public void run()
-			{
-				JFrame f = new JFrame(GamePanel.GAME_NAME);
-				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				f.setResizable(false);
-				f.add(game);
-				f.pack();
-				f.setVisible(true);
-			}
-		});
-
-		game.go();
 	}
 
 }
