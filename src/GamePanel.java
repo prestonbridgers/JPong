@@ -46,13 +46,15 @@ public class GamePanel extends JPanel {
 		while(true)
 		{	
 			ball.checkBounds();
+			ball.checkVerPaddleCollision(paddle_left);
+			ball.checkVerPaddleCollision(paddle_right);
 
 			ball.move();
 			repaint();
 
 			try
 			{
-				Thread.sleep(2);
+				Thread.sleep(5);
 			} catch(InterruptedException e)
 			{
 				e.printStackTrace();

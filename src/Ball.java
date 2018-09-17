@@ -94,6 +94,42 @@ public class Ball
 	}
 
 	/**
+	This method checks collision with the passed HorPaddle object.
+	@param p The HorPaddle object to check collision with.
+	*/
+	public void checkHorPaddleCollision(HorPaddle p)
+	{
+		int xCenter = xPos + (DIAMETER / 2);
+		int yCenter = yPos + (DIAMETER / 2);
+
+		if(xCenter >= p.getXPos() && xCenter <= p.getXPos() + HorPaddle.WIDTH)
+		{
+			if(yCenter >= p.getYPos() && yCenter <= p.getYPos() + HorPaddle.HEIGHT)
+			{
+				bounceY();
+			}
+		}
+	}
+
+	/**
+	This method check collision with the passed VerPaddle object.
+	@param p The VerPaddle object to check collision with.
+	*/
+	public void checkVerPaddleCollision(VerPaddle p)
+	{
+		int xCenter = xPos + (DIAMETER / 2);
+		int yCenter = yPos + (DIAMETER / 2);
+
+		if(xCenter >= p.getXPos() && xCenter <= p.getXPos() + VerPaddle.WIDTH)
+		{
+			if(yCenter >= p.getYPos() && yCenter <= p.getYPos() + VerPaddle.HEIGHT)
+			{
+				bounceX();
+			}
+		}
+	}
+
+	/**
 	The draw method to handle drawing a Ball to a JFrame.
 	@param g The Graphics object to render it.
 	*/
