@@ -81,6 +81,13 @@ public class Ball
 		{
 			bounceX();
 			bounceCount++;
+			if(xPos < GamePanel.GAME_WIDTH / 2)
+			{
+				GamePanel.score_right++;
+			} else
+			{
+				GamePanel.score_left++;
+			}
 		}
 
 		if(yPos <= 0 || yPos + DIAMETER >= yBounds)

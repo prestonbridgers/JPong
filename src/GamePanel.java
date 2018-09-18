@@ -20,12 +20,15 @@ public class GamePanel extends JPanel {
 	public static final int GAME_WIDTH = 900;
 	public static final int GAME_HEIGHT = 700;
 
+	public static int score_left = 0;
+	public static int score_right = 0;
+
 	private VerPaddle paddle_left;
 	private VerPaddle paddle_right;
 	private Ball ball;
 	
 	/**
-	Initializes the JPanel.
+	Initializes the JPanel and adds a KeyListener to itself.
 	*/
 	public GamePanel()
 	{
@@ -85,7 +88,7 @@ public class GamePanel extends JPanel {
 	public void go()
 	{
 		while(true)
-		{	
+		{
 			ball.checkBounds();
 			ball.checkVerPaddleCollision(paddle_left);
 			ball.checkVerPaddleCollision(paddle_right);
@@ -122,6 +125,10 @@ public class GamePanel extends JPanel {
 
 		g.setColor(Color.WHITE);
 		g.fillRect(GAME_WIDTH / 2 - 3, 0, 6, GAME_HEIGHT);
+
+		g.setColor(Color.RED);
+		g.fillOval(GAME_WIDTH / 3 - score_left * 20 / 2, GAME_HEIGHT / 2 - score_left * 20 / 2, score_left * 20, score_left * 20);
+		g.fillOval(GAME_WIDTH - GAME_WIDTH / 3 - score_right * 20 / 2, GAME_HEIGHT / 2 - score_right * 20 / 2, score_right * 20, score_right * 20);
 
 		g.setColor(Color.BLACK);
 		for(int i = 0; i < 14; i++)
